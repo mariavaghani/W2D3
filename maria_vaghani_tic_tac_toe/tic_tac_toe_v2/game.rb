@@ -1,0 +1,46 @@
+require_relative "board"
+require_relative "human_player"
+
+class Game
+  
+  def initialize(player_marks_arr, n)
+    @player_marks_arr = player_marks_arr.map { |mark| HumanPlayer.new(mark) }
+
+    @current_player = @player_marks_arr[0]
+    @board = Board.new(n)
+  end
+
+  def switch_turn
+    @player_marks_arr.rotate!(1)
+    @current_player = @player_marks_arr[0]
+    @current_player
+  end
+
+  def play
+    while @board.empty_positions?
+      
+      # print the board
+      @board.print
+      
+      # get position and place it on the board
+      move =  @current_player.get_position
+
+      while !@board.valid?(move)
+        puts "Sorry, your input is invalid, please try again"
+        puts "The numbers should be between 0 and #{@board.size} inclusively"
+        move =  @current_player.get_position
+      end
+      @board.place_mark(move, @current_player.mark)
+      
+      # check if the user won?
+      if @board.win?(@current_player.mark)
+        @board.print
+        puts "Player #{@current_player.mark} won!"
+        return "End Game"
+      else
+        switch_turn 
+      end
+    end
+    puts "It looks like a draw"
+  end
+end
