@@ -58,6 +58,33 @@ class Code
     num_near_matches
   end
 
+
+
+  # def num_near_matches(code_instance)
+  #   arr_guess = code_instance.pegs.dup
+  #   arr_code = @pegs.dup
+  #   # debugger
+  #   arr_guess.each_with_index do |guess, idx|
+  #     if guess == arr_code[idx]
+  #       arr_guess[idx] = nil
+  #       arr_code[idx] = nil
+  #     end
+  #   end
+
+  #   arr_code.delete(nil)
+  #   arr_guess.delete(nil)
+
+  #   count = 0
+
+  #   arr_guess.each_with_index do |guess, idx|
+  #     if arr_code.include?(guess)
+  #       arr_code.delete_at(arr_code.index(guess))
+  #       count += 1
+  #     end
+  #   end
+  #   count
+  # end
+
   def ==(another_code)
     self.pegs == another_code.pegs
   end

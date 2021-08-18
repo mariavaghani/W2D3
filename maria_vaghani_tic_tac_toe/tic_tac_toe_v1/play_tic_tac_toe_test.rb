@@ -1,4 +1,6 @@
 require_relative "board"
+require_relative "human_player"
+
 
 board = Board.new()
 
@@ -6,12 +8,14 @@ position_arr = [1, 1]
 
 
 begin
+  puts "=============================="
   board.place_mark([-1, 2], :X)
 rescue
   puts "Place mark was not successful, as it should - GREAT"
 end
 
 begin
+  puts "=============================="
   board.place_mark([0, 1], :X)
   board.place_mark([1, 0], :O)
   puts "Mark put was successful, as it should - GREAT"
@@ -20,6 +24,7 @@ rescue
 end
 
 begin
+  puts "=============================="
   board.print
   puts "Print method works - GREAT"
 rescue
@@ -27,6 +32,7 @@ rescue
 end
 
 begin
+  puts "=============================="
   board = Board.new()
   board.place_mark([0, 1], :X)
   board.place_mark([1, 0], :X)
@@ -43,6 +49,7 @@ end
 
 
 begin
+  puts "=============================="
   board = Board.new()
   board.place_mark([0, 1], :X)
   board.place_mark([1, 1], :X)
@@ -66,6 +73,7 @@ end
 # #win_diagonal?
 
 begin
+  puts "=============================="
   board = Board.new()
   board.place_mark([0, 0], :X)
   board.place_mark([1, 1], :X)
@@ -87,6 +95,7 @@ rescue
 end
 
 begin
+  puts "=============================="
   board = Board.new()
   board.place_mark([0, 0], :X)
   board.place_mark([0, 2], :X)
@@ -110,7 +119,9 @@ end
 # win?
 
 
+
 begin
+  puts "=============================="
   board = Board.new()
   board.place_mark([0, 0], :X)
   board.place_mark([0, 2], :X)
@@ -134,6 +145,7 @@ end
 # empty_positions?
 
 begin
+  puts "=============================="
   board = Board.new()
   board.place_mark([0, 0], :X)
   board.place_mark([0, 1], :X)
@@ -162,4 +174,27 @@ begin
   puts "empty_positions? method works GREAT"
 rescue
   puts "empty_positions? method was not successful, FAIL"
+end
+
+###### HumanPlayer //
+
+begin
+  puts "=============================="
+  board = Board.new()
+  player = HumanPlayer.new(:X)
+  player.mark
+  puts "Player created with mark :X - GREAT"
+rescue => exception
+  puts "Unable to create player: #{exception.message}"
+end
+
+begin
+  puts "=============================="
+  board = Board.new()
+  player = HumanPlayer.new(:X)
+  player.mark
+  board.place_mark(player.get_position, player.mark)
+  board.print
+rescue => exception
+  puts "Unable to get position from player and place it in the board: #{exception.message}"
 end
