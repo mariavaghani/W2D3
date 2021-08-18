@@ -10,7 +10,6 @@ class HumanPlayer
     puts "Player #{@mark}, please enter your position as coordinate numbers separated by spaces"
     puts "The numbers should be between 0 and 2 inclusively"
     arr_from_string = gets.chomp.split(" ")
-    p arr_from_string
     if arr_from_string.length != 2 || !arr_from_string.all? { |ele| ele == ele.to_i.to_s }
       raise "sorry, the position is invalid"
     end

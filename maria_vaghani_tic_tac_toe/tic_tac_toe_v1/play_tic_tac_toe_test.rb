@@ -1,5 +1,4 @@
-require_relative "board"
-require_relative "human_player"
+require_relative "game"
 
 
 board = Board.new()
@@ -193,8 +192,28 @@ begin
   board = Board.new()
   player = HumanPlayer.new(:X)
   player.mark
-  board.place_mark(player.get_position, player.mark)
-  board.print
+  # board.place_mark(player.get_position, player.mark)
+  # board.print
+
+rescue => exception
+  puts "Unable to get position from player and place it in the board: #{exception.message}"
+end
+
+begin
+  puts "=============================="
+  game = Game.new(:X, :O)
+  puts "initial setup"
+  p game
+  game.switch_turn
+  puts "player switched"
+  p game
+  game.switch_turn
+  puts "player switched again"
+  p game
+  # player = HumanPlayer.new(:X)
+  # player.mark
+  # board.place_mark(player.get_position, player.mark)
+  # board.print
 rescue => exception
   puts "Unable to get position from player and place it in the board: #{exception.message}"
 end

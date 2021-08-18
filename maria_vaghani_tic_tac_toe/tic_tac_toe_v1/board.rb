@@ -31,7 +31,10 @@ class Board
   end
 
   def print
+    puts "============="
     @board.each { |row| puts row.join(" ") }
+    puts ""
+    puts "============="
   end
 
   def win_row?(mark)
