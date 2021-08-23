@@ -46,17 +46,18 @@ class Code
   end
 
   def num_near_matches(guess)
-    num_near_matches = 0
+    near_matches_num = 0
     #create hashes counting pegs in both secret and guess codes 
     guess_hash = Hash.new(0)
     secret_hash = Hash.new(0)
     guess.pegs.each { |peg| guess_hash[peg] += 1 }
     @pegs.each { |peg| secret_hash[peg] += 1 }
 
-    guess_hash.each { |peg, num_times| num_near_matches += [num_times, secret_hash[peg]].min }
-    num_near_matches -= num_exact_matches(guess)
-    num_near_matches
+    guess_hash.each { |peg, num_times| near_matches_num += [num_times, secret_hash[peg]].min }
+    near_matches_num -= num_exact_matches(guess)
+    near_matches_num
   end
+
 
 
 
